@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>신흥1구역 분양신청 전략</title>
+<style>
+  :root { --fg:#1c2128; --muted:#57606a; --line:#d0d7de; --accent:#0969da;
+           --accent2:#cf222e; --bg:#ffffff; --soft:#f6f8fa; --hl:#fff8c5; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--soft); color:var(--fg);
+    font-family:-apple-system,"Segoe UI","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    line-height:1.7; -webkit-text-size-adjust:100%; }
+  .wrap { max-width:920px; margin:0 auto; padding:24px 16px 80px; }
+  .card { background:var(--bg); border:1px solid var(--line); border-radius:14px;
+    padding:28px 30px; box-shadow:0 1px 3px rgba(27,31,36,.06); }
+  h1 { font-size:1.55rem; margin:.2em 0 .4em; line-height:1.3; }
+  h2 { font-size:1.25rem; margin:1.8em 0 .6em; padding-bottom:.3em;
+    border-bottom:2px solid var(--line); }
+  h3 { font-size:1.05rem; margin:1.4em 0 .5em; color:#24292f; }
+  a { color:var(--accent); }
+  blockquote { margin:.8em 0; padding:.5em 1em; background:var(--soft);
+    border-left:4px solid var(--accent); border-radius:0 8px 8px 0; color:var(--muted); }
+  table { border-collapse:collapse; width:100%; margin:1em 0; font-size:.9rem;
+    display:block; overflow-x:auto; }
+  th,td { border:1px solid var(--line); padding:7px 10px; text-align:center; white-space:nowrap; }
+  th { background:#eaeef2; font-weight:700; }
+  tbody tr:nth-child(even) { background:var(--soft); }
+  td:first-child, th:first-child { text-align:left; }
+  strong { color:#101418; }
+  code { background:#eff1f3; padding:.1em .4em; border-radius:5px; font-size:.88em; }
+  ul,ol { padding-left:1.3em; }
+  hr { border:0; border-top:1px solid var(--line); margin:2em 0; }
+  .banner { background:var(--hl); border:1px solid #e9d8a6; border-radius:10px;
+    padding:10px 14px; font-size:.85rem; color:#6b5900; margin-bottom:18px; }
+  .foot { text-align:center; color:var(--muted); font-size:.8rem; margin-top:30px; }
+  em { color:var(--muted); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="banner">🔒 개인 부동산 전략 문서 · 비공개 열람용</div>
+    <div class="card">
+<h1 id="1-2026-06-20">신흥1구역 분양신청 전략 — 중간 정리 (2026-06-20)</h1>
+<blockquote>
+<p>경기 성남 수정구 <strong>신흥1구역</strong> 재개발 조합원 분양신청.<br />
+내가 가진 <strong>1+1 가능 물건 2개</strong>의 최적 조합을 정하기 위한 작업 문서.<br />
+선행 비교구역 = <strong>수진1구역</strong>(ground truth). 자료: <code>ref/</code>, 시뮬: <code>analysis/sim_59_bottleneck.py</code>.</p>
+</blockquote>
+<hr />
+<h2 id="0">0. 내 물건 (전제)</h2>
+<table>
+<thead>
+<tr>
+<th>물건</th>
+<th>연면적</th>
+<th>1+1 신청 가능 조합</th>
+<th><strong>명의 / 세대</strong></th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>143㎡</td>
+<td><strong>74 + 59</strong> 까지 (74.99 + 59.99 ≈ 134.98 ≤ 143)</td>
+<td><strong>부모(아버지·어머니) 공동명의 = 부모 세대</strong></td>
+<td>84+59는 불가(143 초과)</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>178㎡</td>
+<td><strong>104 + 59</strong> (또는 84+59)</td>
+<td><strong>본인 명의 → 2027년경 자녀명의 이전 예정</strong></td>
+<td>자녀 세대분리 후 정리 계획. 권리가액 큰 편</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>1+1 규칙: 추가 1주택(=‘+1’)은 <strong>전용 60㎡ 이하</strong>여야 함 → 여기선 사실상 <strong>59</strong>.<br />
+  (39는 사업성·다주택 부담으로 본인·타 조합원 모두 기피 → +1은 59로 수렴.)</li>
+<li>★ <strong>중요: 두 물건은 서로 다른 세대.</strong> A=부모 세대(74+59 = 2주택), B=본인→자녀 세대(104+59 = 2주택).<br />
+  → ‘4주택이 한 명에 쌓이는’ 게 아니라 <strong>두 세대로 분산</strong> → 다주택 부담이 §6 초기 가정보다 훨씬 가벼움.</li>
+</ul>
+<hr />
+<h2 id="1-1-ground-truth-20250710">1. 선행구역 수진1 (Ground Truth, 2025.07.10 신청마감)</h2>
+<p>권리자수 <strong>2,660명</strong>, 분양신청 계 <strong>2,731세대</strong> (1주택 2,554 + 2주택/1+1 추가분 177).</p>
+<table>
+<thead>
+<tr>
+<th>평형</th>
+<th>39</th>
+<th>41</th>
+<th>51</th>
+<th>59</th>
+<th>74</th>
+<th>84</th>
+<th>104</th>
+<th>계</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>건설(공급)</td>
+<td>444</td>
+<td>23</td>
+<td>158</td>
+<td>784</td>
+<td>175</td>
+<td>1,870</td>
+<td>508</td>
+<td>3,962</td>
+</tr>
+<tr>
+<td>신청(1주택)</td>
+<td>2</td>
+<td>3</td>
+<td>29</td>
+<td>382</td>
+<td>167</td>
+<td>1,599</td>
+<td>372</td>
+<td>2,554</td>
+</tr>
+<tr>
+<td>신청(1+1 추가분)</td>
+<td>48</td>
+<td>6</td>
+<td>41</td>
+<td>82</td>
+<td>–</td>
+<td>–</td>
+<td>–</td>
+<td>177</td>
+</tr>
+<tr>
+<td><strong>분양율(분양/건설)</strong></td>
+<td>11.3%</td>
+<td>39.1%</td>
+<td>44.3%</td>
+<td><strong>59.2%</strong></td>
+<td><strong>95.4%</strong></td>
+<td><strong>85.5%</strong></td>
+<td><strong>73.2%</strong></td>
+<td>68.9%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>수진1에서 배운 핵심 패턴</strong><br />
+1. <strong>74가 가장 인기</strong>(95.4%) → 74는 늘 희소·경합. 84(85.5%), 104(73.2%)도 높음.<br />
+2. <strong>1+1은 소수</strong>: 1주택 신청자 2,554명 중 177명(≈7%)만 1+1. +1 평형은 <strong>59(82) &gt; 39(48) &gt; 51(41)</strong> 순.<br />
+3. 작은 평형(39·51)은 본 분양 수요가 거의 없음(현금청산/임대로 빠짐).<br />
+4. 현금청산 ≈ 2,660 − 2,554 = <strong>106명(약 4%)</strong>.</p>
+<hr />
+<h2 id="2-1-202642">2. 신흥1 공급 + 부동산 시나리오 (사업시행인가 공람공고, 2026.4.2)</h2>
+<p><strong>분양 물량 (59㎡ 이상)</strong></p>
+<table>
+<thead>
+<tr>
+<th>평형</th>
+<th>59</th>
+<th>74</th>
+<th>84</th>
+<th>104</th>
+<th>계</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>공급</td>
+<td><strong>750</strong></td>
+<td><strong>145</strong></td>
+<td><strong>1,236</strong></td>
+<td><strong>523</strong></td>
+<td><strong>2,654</strong></td>
+</tr>
+</tbody>
+</table>
+<p>(전체 공급은 임대 포함 3블럭까지 39:858 / 49:93 / 59:899 / 74:145 / 84:1,236 / 104:523 = 3,754)</p>
+<p><strong>분양 가능 조합원 ≈ 2,240세대</strong> (근생·청산 제외 후, 1+1 포함).</p>
+<p>부동산 시나리오 (104 신청수에 따른 59 수급):</p>
+<table>
+<thead>
+<tr>
+<th>시나리오</th>
+<th>59</th>
+<th>74</th>
+<th>84</th>
+<th>104</th>
+<th>합</th>
+<th>판정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>(1)</strong> 104 적게</td>
+<td>750</td>
+<td>145</td>
+<td>1,236</td>
+<td><strong>100</strong></td>
+<td>2,231</td>
+<td><strong>59 −9개 부족</strong></td>
+</tr>
+<tr>
+<td><strong>(2)</strong> 104 많이</td>
+<td>659</td>
+<td>145</td>
+<td>1,236</td>
+<td><strong>200</strong></td>
+<td>2,240</td>
+<td>59 여유</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>두 점을 잇는 관계식: <code>59 순공급 ≈ 104 신청수 − 109</code>.</strong><br />
+→ <strong>104를 109명 이상 신청하면 59 충분, 109 미만이면 그만큼 59 부족.</strong></p>
+</blockquote>
+<hr />
+<h2 id="3-2026-06-20">3. 오늘 부동산 대화 핵심 (2026-06-20)</h2>
+<ul>
+<li><strong>104 ≥ 200명만 신청해도 59 남는다.</strong> (수진1 104 분양율 73% = 382/508 선례 → 신흥1도 높을 여지)</li>
+<li><strong>1+1 수진1보다 적다.</strong> 초반 ~30명. 대부분 84·74·59 신청. (1+1 적음 = 59 압력 ↓ = 좋음)</li>
+<li><strong>39는 분양에서 제외하고 계산.</strong> → +1 수요가 59로 집중(59 압력 ↑ 요인).</li>
+<li><strong>근생 ~90명 감평 미달</strong>(현금청산 대상): 60명은 매도→권리자수 20명으로 합쳐짐, 30명은 청산자 분류(분양신청 불가). → 일부는 권리 합쳐 최소분양가 넘기면 분양신청 가능.</li>
+<li>권리자 ~2,220(청산·근생 제외) + 1+1 → 분양신청 가능 <strong>~2,240세대 / 물량 2,240개</strong>.</li>
+</ul>
+<hr />
+<h2 id="4-59">4. 핵심 메커니즘 — 왜 59가 병목인가, 그리고 누가 잘리나</h2>
+<ul>
+<li><strong>본 분양분(1주택)</strong> = 74/84/104/59 중 택1. <strong>권리가액 순</strong>으로 배정. → <strong>내 B의 104, A의 74는 1주택 신청이라 59병목과 무관하게 우선 배정.</strong></li>
+<li><strong>+1(추가 59)</strong> = 정관상 <strong>후순위</strong>. 같은 1+1끼리는 <strong>권리가액 큰 순</strong>. → 59가 모자라면 <strong>1+1 신청자 중 권리가액 ‘하위’부터 +59 탈락.</strong></li>
+<li>따라서 위험은 오직 <strong>‘+59’ 한 칸</strong>에 국한되고, 그것도 <strong>권리가액 낮은 1+1 신청자</strong>에게만 발생.</li>
+</ul>
+<p><strong>시뮬 결과</strong> (<code>sim_59_bottleneck.py</code>, 가정 레짐별):</p>
+<table>
+<thead>
+<tr>
+<th>레짐</th>
+<th>P(59 부족)</th>
+<th>부족시 평균규모</th>
+<th>B(178) +59 배정</th>
+<th>A(143) +59 배정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>낙관(104 많고 1+1 적음)</td>
+<td>0%</td>
+<td>–</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>기본(균형)</td>
+<td>3%</td>
+<td>17개</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>비관(104 기피 + 1+1 급증)</td>
+<td><strong>44%</strong></td>
+<td>30개</td>
+<td><strong>100%</strong></td>
+<td><strong>97%</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>결론: 59 부족 여부는 전적으로 ‘104를 몇 명이 신청하느냐’에 달림.</strong><br />
+부족이 나도 규모가 작고(평균 17~30개) <strong>권리가액 하위 1+1부터</strong> 잘리므로,<br />
+<strong>내 두 물건의 +59는 거의 모든 시나리오에서 배정</strong>(A도 최악 레짐에서만 97%).</p>
+</blockquote>
+<hr />
+<h2 id="5">5. 내 물건별 옵션 매트릭스</h2>
+<h3 id="b-178">물건 B (연면적 178) — 권리가액 큰 편 = 우선순위 높음</h3>
+<table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>최선</th>
+<th>+59 탈락시</th>
+<th>평가</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>B1: 104 + 59</strong> ✅</td>
+<td>104+59</td>
+<td><strong>104</strong></td>
+<td>104는 미달 우려(523 공급)라 안전·프리미엄. +59는 높은 우선순위로 거의 확보. <strong>추천</strong></td>
+</tr>
+<tr>
+<td>B2: 84 + 59</td>
+<td>84+59</td>
+<td>84</td>
+<td>안전하나 104 대비 다운그레이드. B의 강점(우선순위) 못 살림</td>
+</tr>
+<tr>
+<td>B3: 단독 104</td>
+<td>104</td>
+<td>–</td>
+<td>1+1 포기. 다주택 회피용</td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>B는 ‘+59가 가장 안전한 물건’.</strong> 1+1을 하나만 한다면 <strong>반드시 B에</strong> 거는 게 맞음.</p>
+<h3 id="a-143">물건 A (연면적 143) — 권리가액 중간</h3>
+<table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>최선</th>
+<th>+59 탈락시</th>
+<th>평가</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A1: 74 + 59</strong></td>
+<td>74+59</td>
+<td>74 (← “84 할걸” 후회 가능)</td>
+<td>자산 최대. 단 <strong>74는 공급 145로 희소</strong>(수진1 95.4%) → 본분양 74조차 경합 위험 + +59 위험</td>
+</tr>
+<tr>
+<td><strong>A2: 단독 84</strong> ✅</td>
+<td>84</td>
+<td>–</td>
+<td>84는 공급 1,236로 <strong>완전 안전</strong>. 74희소·59병목 둘 다 회피. 후회 시나리오 원천 차단. 다주택 부담↓</td>
+</tr>
+<tr>
+<td>A3: 단독 74</td>
+<td>74</td>
+<td>–</td>
+<td>A1에 열위(이왕이면 +59 붙임)</td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>A는 진짜 갈림길.</strong> ‘자산 극대화(1+1, 4세대)’ vs ‘안전·단순(단독 84, 3세대)’.</p>
+<hr />
+<h2 id="6-2026-06-20">6. 권고 조합 — ★ 확정: 수익극대화형 (2026-06-20 결정)</h2>
+<table>
+<thead>
+<tr>
+<th>전략</th>
+<th>B</th>
+<th>A</th>
+<th>결과 세대</th>
+<th>성향</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>★ 채택: 수익극대화형</strong></td>
+<td><strong>104+59</strong></td>
+<td><strong>74+59</strong></td>
+<td>104·59·74·59 (4)</td>
+<td>자산·임대 최대. 다주택 부담·경합 위험은 관리 대상</td>
+</tr>
+<tr>
+<td>(대안) 안전형</td>
+<td>104+59</td>
+<td>단독 84</td>
+<td>104·59·84 (3)</td>
+<td>보류. 다주택 회피 필요해지면 회귀 옵션</td>
+</tr>
+</tbody>
+</table>
+<p><strong>확정 사유:</strong> 사용자가 자산·임대 극대화를 선택. + <strong>두 물건이 별개 세대(A=부모, B=본인→자녀)라 다주택 부담이 분산</strong> → 채택안의 정당성 강화.</p>
+<h3 id="_1">채택안의 리스크와 관리 포인트</h3>
+<ol>
+<li><strong>A의 74 본분양 경합</strong> — 74 공급 <strong>145</strong>로 가장 희소(수진1 95.4%). 권리가액 순 배정에서 A(중위)가 밀리면 84/59로 재배정될 수 있음.<br />
+   → <strong>관리:</strong> ①수용명세로 A의 74 경쟁권(권리가액 순위) 확인, ②신청기간 중 74 신청 동향 추적.</li>
+<li><strong>+59 두 칸</strong> — B는 거의 확실(우선순위 최상), A는 비관 레짐에서만 ~97%. → 104 신청수(병목 키변수) 모니터링.</li>
+<li><strong>다주택 부담(세대 분산)</strong> — A=부모 세대 2주택, B=본인 세대 2주택. 한 사람 4주택 아님 → 종부세·중과 부담 완화. 단 <strong>부모 세대의 기존 보유</strong>, <strong>본인 세대 기존 보유</strong>를 각각 점검(세대별 2주택이 미치는 영향).</li>
+<li><strong>B 자녀명의 이전(2027 예정)의 변수</strong> — ⓐ분양신청은 2026년 본인 명의로 진행 후 증여가 자연스러움, ⓑ증여 시 <strong>조합원 지위·분양권 승계</strong>·증여세, ⓒ<strong>투기과열지구/조정대상지역이면 조합원지위 양도(증여) 제한</strong> 가능 → 성남 수정구 규제지역 여부 확인 필수, ⓓ자녀 세대분리 요건·시점.</li>
+<li><strong>전매제한</strong> — +59(60㎡ 이하)는 이전고시 다음날부터 <strong>3년 전매제한</strong>. B의 자녀 이전·정리 타임라인과 충돌 없는지 확인.</li>
+</ol>
+<hr />
+<h2 id="7">7. 내 질문에 대한 직접 답</h2>
+<p><strong>Q1. 59가 모자라면 +1로 59 공급 못 받나?</strong><br />
+→ 이론상 가능하나 <strong>후순위·권리가액 하위부터</strong> 잘림. 부족 규모도 작음(평균 17~30개).<br />
+   내 B·A는 권리가액이 하위가 아니므로 시뮬상 거의 항상 +59 확보. <strong>본 분양분(104·74)은 애초에 영향 없음.</strong></p>
+<p><strong>Q2. 그 확률은?</strong><br />
+→ <strong>104 신청수에 전적으로 의존.</strong> 낙관 0% · 기본 3% · 비관(104 기피+1+1 급증) 44%.<br />
+   부동산 정보(104 73% 선례, 1+1 적음)대로면 <strong>현실 확률은 낮은 편(0~5%대)</strong>. 단 ‘104 외면’ 리스크는 끝까지 모니터링.</p>
+<p><strong>Q3. 84+59 vs 74+59 vs 84+39 후회 비교</strong><br />
+→ 84+59 탈락 시 84(덜 아쉬움), 74+59 탈락 시 74(“84할걸” 후회). <strong>84+39는 39 사업성·다주택 불리로 비권장.</strong><br />
+   내 경우 84+59가 가능한 건 <strong>B(178)</strong>뿐 → 하지만 B는 104+59가 더 우월. <strong>74+59의 후회 리스크가 있는 건 A</strong> → 그래서 A는 ‘단독 84’가 후회를 원천 차단하는 안전판.</p>
+<hr />
+<h2 id="8-next-steps">8. 앞으로의 계획 (Next Steps)</h2>
+<ul>
+<li>[ ] <strong>① 권리가액 순위 확정</strong> — <code>신흥1구역_수용명세_전체.xlsx</code>를 받아 내 A·B의 <strong>권리가액 백분위</strong>를 실제로 산출.<br />
+      (현재 시뮬은 B=상위25%, A=중위로 <em>가정</em>. 이게 확정되면 +59 배정확률을 정밀화.)</li>
+<li>[ ] <strong>② 근생 합산 물량 추정</strong> — 감평미달 근생(~90명)이 권리 합쳐 분양신청 들어오는 규모 → 84/59 수요에 가산.</li>
+<li>[ ] <strong>③ 104 신청 동향 추적</strong> — 병목의 유일한 키 변수. 신청 진행 중 104 신청수가 ~110 넘는지 부동산 통해 모니터링.</li>
+<li>[ ] <strong>④ 세대별 다주택 시뮬</strong> — 부모 세대(74+59=2주택) / 본인 세대(104+59=2주택) <strong>각각</strong> 종부세·양도세 중과·대출한도 영향 계산. (한 명 4주택 아님 → 부담 분산 확인)</li>
+<li>[ ] <strong>⑤ B 자녀명의 이전 플랜</strong> — 성남 수정구 규제지역(투기과열/조정) 여부 → 조합원지위 증여 제한 확인 / 증여세 / 분양권 승계 / 자녀 세대분리 요건·시점 / 1+1 3년 전매제한과 정리 타임라인 정합성.</li>
+<li>[ ] <strong>⑥ 신청 직전 최종 점검</strong> — 74 본분양 경합도(공급 145) 재확인, 전매제한(60㎡이하 이전고시 후 3년) 확인.</li>
+</ul>
+<h3 id="_2">결정 완료</h3>
+<ul>
+<li>✅ <strong>A·B 모두 1+1 확정: B = 104+59, A = 74+59 (수익극대화형).</strong> (2026-06-20)</li>
+<li>세대 구조상 부모 세대 2주택(A) + 본인→자녀 세대 2주택(B) → 한 명 4주택 부담 아님 → 채택안 유지에 무리 없음.</li>
+<li>회귀 옵션: 세대별 세금 점검(④) 결과 부모 세대 부담이 크면 A만 단독 84로 변경.</li>
+</ul>
+<hr />
+<p><em>파일: <code>analysis/신흥1_분양신청_전략.md</code> · 시뮬: <code>analysis/sim_59_bottleneck.py</code> (PYTHONIOENCODING=utf-8 python sim_59_bottleneck.py)</em></p>
+    </div>
+    <div class="foot">생성: Claude Code · 시뮬레이션 <code>analysis/sim_59_bottleneck.py</code></div>
+  </div>
+</body>
+</html>
